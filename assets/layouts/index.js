@@ -1,9 +1,9 @@
 import React from 'react';
-import ChessBoard from '../../src/views/ChessBoard';
+import GoBang from '../../src/views/GoBang';
 import './style.less';
 
 const App = () => (
-  <ChessBoard />
+  <GoBang />
 );
 
 export default App;
