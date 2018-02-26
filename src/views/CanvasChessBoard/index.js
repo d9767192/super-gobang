@@ -1,10 +1,20 @@
-import React from 'react';
-import { ID, defaultProps, propTypes } from './props';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import getBoard from '../../hocs/getBoard';
+import { drawBoard } from '../../controllers/CanvasChessBoard';
 
-const CanvasChessBoard = props => (
-  <canvas id={props[ID]} />
-);
-CanvasChessBoard.defaultProps = defaultProps;
-CanvasChessBoard.propTypes = propTypes;
+class CanvasChessBoard extends Component {
+  static propTypes = {
+    id: PropTypes.string.isRequired,
+  }
+  componentDidMount() {
+    drawBoard(this.props);
+  }
+  render() {
+    return (
+      <canvas id={this.props.id} />
+    );
+  }
+}
 
-export default CanvasChessBoard;
+export default getBoard(CanvasChessBoard);
