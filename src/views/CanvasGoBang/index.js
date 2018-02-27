@@ -6,7 +6,6 @@ import './style.less';
 
 const CanvasGoBang = props => (
   <div className="canvas-gobang-style">
-    {console.log(props)}
     <CanvasChessBoard {...props} />
     <CanvasPieces {...props} />
   </div>

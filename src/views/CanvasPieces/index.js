@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { drawer } from '../../controllers/CanvasPieces';
+import { detectChessMovesChange, detectWidthChange } from '../../controllers/CanvasPieces';
 import './style.less';
 
 class CanvasPieces extends Component {
@@ -11,7 +11,10 @@ class CanvasPieces extends Component {
     height: PropTypes.number.isRequired,
   }
   componentWillReceiveProps(nextProps) {
-    drawer(this.canvas, nextProps, this.props);
+    detectChessMovesChange(this.canvas, nextProps, this.props);
+  }
+  componentDidUpdate(prevProps) {
+    detectWidthChange(this.canvas, this.props, prevProps);
   }
   render() {
     const { width, height } = this.props;

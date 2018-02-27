@@ -10,18 +10,20 @@ class GoBang extends Component {
     this.state = { chessMoves: [] };
   }
   onClick() {
-    this.setState({ chessMoves: [{ x: 1, y: 1, color: '#fefefe' }] });
+    this.setState({ chessMoves: [{ x: 1, y: 1, color: '#000000' }] });
   }
   onClear() {
     this.setState({ chessMoves: [] });
   }
   render() {
     return (
-      <ResponsiveContainer>
+      <div>
         <button onClick={this.onClick}>Add</button>
         <button onClick={this.onClear}>Clear</button>
-        <CanvasGoBang chessMoves={this.state.chessMoves} />
-      </ResponsiveContainer>
+        <ResponsiveContainer>
+          <CanvasGoBang chessMoves={this.state.chessMoves} />
+        </ResponsiveContainer>
+      </div>
     );
   }
 }

@@ -18,7 +18,7 @@ const drawPiece = (ctx, coord, unitWidth, color) => {
   ctx.fill();
   ctx.closePath();
 };
-const changePiece = (ctx, nextProps, props) => {
+const addOrRemovePiece = (ctx, nextProps, props) => {
   const { chessMoves: nextChessMoves, unitWidth, coord } = nextProps;
   const { chessMoves } = props;
   if (chessMoves.length < nextChessMoves.length) {
@@ -31,13 +31,13 @@ const changePiece = (ctx, nextProps, props) => {
     clearPiece(ctx, point, unitWidth);
   }
 };
-const redrawPieces = (ctx, nextProps, props) => {
+const redrawPieces = (ctx, props) => {
   const {
     width,
     height,
     unitWidth,
     coord,
-  } = nextProps;
+  } = props;
   const { chessMoves } = props;
   clearCanvas(ctx, width, height);
   chessMoves.forEach((element) => {
@@ -46,16 +46,21 @@ const redrawPieces = (ctx, nextProps, props) => {
     drawPiece(ctx, point, unitWidth, color);
   });
 };
-export const drawer = (container, nextProps, props) => {
+export const detectChessMovesChange = (container, nextProps, props) => {
   const ctx = container.getContext('2d');
-  const { chessMoves, width } = props;
-  const { chessMoves: nextChessMoves, width: nextWidth } = nextProps;
+  const { chessMoves } = props;
+  const { chessMoves: nextChessMoves } = nextProps;
   if (chessMoves.length !== nextChessMoves.length) {
-    changePiece(ctx, nextProps, props);
+    addOrRemovePiece(ctx, nextProps, props);
   }
+};
+export const detectWidthChange = (container, prevProps, props) => {
+  const ctx = container.getContext('2d');
+  const { width } = props;
+  const { width: nextWidth } = prevProps;
   if (nextWidth !== width) {
-    redrawPieces(ctx, nextProps, props);
+    redrawPieces(ctx, prevProps);
   }
 };
 
-export default drawer;
+export default detectChessMovesChange;

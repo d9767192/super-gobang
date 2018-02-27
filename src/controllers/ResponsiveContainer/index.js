@@ -1,25 +1,32 @@
 import React from 'react';
 
-export function setWidthAndHeight(container, nextProps) {
+function setWidthAndHeight(container) {
   return (
     function handler() {
-      const props = nextProps !== undefined ? nextProps : this.props;
-      const { children, ...others } = props;
-      const childrenList = Array.isArray(children) ? children : [children];
-      const width = container.offsetWidth;
-      const height = container.offsetHeight;
-      const clonedChildren = childrenList.map((child, idx) => {
-        const key = idx;
-        return React.cloneElement(child, {
-          ...others,
-          width,
-          height,
-          key,
+      const { children } = this.props;
+      if (children) {
+        const childrenList = Array.isArray(children) ? children : [children];
+        const width = container.offsetWidth;
+        const height = container.offsetHeight;
+        const clonedChildren = childrenList.map((child, idx) => {
+          const key = idx;
+          return React.cloneElement(child, { width, height, key });
         });
-      });
-      this.setState({ children: clonedChildren });
+        this.setState({ children: clonedChildren });
+      }
     }
   );
+}
+export function updateChildren(nextProps) {
+  const { children: prevChildren } = this.state;
+  const { children } = nextProps;
+  const childrenList = Array.isArray(children) ? children : [children];
+  const clonedChildren = childrenList.map((child, idx) => {
+    const { props, key } = prevChildren[idx];
+    const { width, height } = props;
+    return React.cloneElement(child, { width, height, key });
+  });
+  this.setState({ children: clonedChildren });
 }
 export function addScreenListener(container) {
   let handler = setWidthAndHeight(container);
