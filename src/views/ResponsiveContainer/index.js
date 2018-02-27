@@ -1,7 +1,7 @@
 /* eslint react/no-did-mount-set-state: off */
 
 import React, { Component } from 'react';
-import { addScreenListener, removeScreenListener } from '../../controllers/ResponsiveContainer';
+import { addScreenListener, removeScreenListener, setWidthAndHeight } from '../../controllers/ResponsiveContainer';
 import './style.less';
 
 class ResponsiveContainer extends Component {
@@ -10,8 +10,12 @@ class ResponsiveContainer extends Component {
     this.state = { hanlder: undefined, children: null };
   }
   componentDidMount() {
-    const hanlder = addScreenListener.call(this, this.container, this.props);
+    const hanlder = addScreenListener.call(this, this.container);
     this.setState({ hanlder });
+  }
+  componentWillReceiveProps(nextProps) {
+    const handler = setWidthAndHeight(this.container, nextProps);
+    handler.call(this);
   }
   componentWillUnmount() {
     removeScreenListener(this.state.hanlder);

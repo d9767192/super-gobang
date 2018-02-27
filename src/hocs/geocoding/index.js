@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { setCoordinate } from '../../controllers/coordinateSystem';
+import { setCoordinate } from '../../controllers/geocoding';
 
-const coordinateSystem = WrappedComponent => (
+const geocoding = WrappedComponent => (
   class extends Component {
     static defaultProps = {
       grid: 15,
@@ -15,14 +15,22 @@ const coordinateSystem = WrappedComponent => (
       setCoordinate.call(this);
     }
     render() {
-      const { coord, width, height } = this.state;
+      const {
+        coord,
+        width,
+        height,
+        unitWidth,
+        unitHeight,
+      } = this.state;
       return coord ?
         (
           <WrappedComponent
             {...this.props}
-            coord={this.state.coord}
+            coord={coord}
             width={width}
             height={height}
+            unitWidth={unitWidth}
+            unitHeight={unitHeight}
           />
         ) :
         undefined;
@@ -30,4 +38,4 @@ const coordinateSystem = WrappedComponent => (
   }
 );
 
-export default coordinateSystem;
+export default geocoding;

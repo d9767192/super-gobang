@@ -14,7 +14,13 @@ export function setCoordinate() {
       coord[x][y] = [unitWidth * x, unitHeight * y];
     }
   }
-  return this.setState({ coord, width: trueWidth, height: trueHeight });
+  return this.setState({
+    coord,
+    unitWidth,
+    unitHeight,
+    width: trueWidth,
+    height: trueHeight,
+  });
 }
 
 export default setCoordinate;

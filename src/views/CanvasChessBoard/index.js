@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import coordinateSystem from '../../hocs/coordinateSystem';
 import { drawBoard } from '../../controllers/CanvasChessBoard';
 import './style.less';
 
@@ -28,4 +27,4 @@ class CanvasChessBoard extends Component {
   }
 }
 
-export default coordinateSystem(CanvasChessBoard);
+export default CanvasChessBoard;
