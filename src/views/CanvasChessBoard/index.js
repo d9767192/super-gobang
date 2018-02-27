@@ -1,20 +1,31 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import getBoard from '../../hocs/getBoard';
+import coordinateSystem from '../../hocs/coordinateSystem';
 import { drawBoard } from '../../controllers/CanvasChessBoard';
+import './style.less';
 
 class CanvasChessBoard extends Component {
   static propTypes = {
-    id: PropTypes.string.isRequired,
+    width: PropTypes.number.isRequired,
+    height: PropTypes.number.isRequired,
   }
   componentDidMount() {
-    drawBoard(this.props);
+    drawBoard(this.chessboard, this.props);
+  }
+  componentDidUpdate() {
+    drawBoard(this.chessboard, this.props);
   }
   render() {
+    const { width, height } = this.props;
     return (
-      <canvas id={this.props.id} />
+      <canvas
+        width={width}
+        height={height}
+        ref={(self) => { this.chessboard = self; }}
+        className="canvas-chessboard-style"
+      />
     );
   }
 }
 
-export default getBoard(CanvasChessBoard);
+export default coordinateSystem(CanvasChessBoard);

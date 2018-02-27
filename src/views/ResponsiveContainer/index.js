@@ -1,21 +1,32 @@
+/* eslint react/no-did-mount-set-state: off */
+
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import { addScreenListener, removeScreenListener } from '../../controllers/ResponsiveContainer';
+import './style.less';
 
 class ResponsiveContainer extends Component {
-  static defaultProps = {
-    children: undefined,
+  constructor(props) {
+    super(props);
+    this.state = { hanlder: undefined, children: null };
   }
-  static propTypes = {
-    children: PropTypes.any,
+  componentDidMount() {
+    const hanlder = addScreenListener.call(this, this.container, this.props);
+    this.setState({ hanlder });
   }
-  componentWillMount() {
-
+  componentWillUnmount() {
+    removeScreenListener(this.state.hanlder);
   }
   render() {
+    const { children } = this.state;
     return (
-      <div>
-        {this.props.children}
+      <div
+        className="responsive-container-style"
+        ref={(self) => { this.container = self; }}
+      >
+        {children}
       </div>
     );
   }
-};
+}
+
+export default ResponsiveContainer;
