@@ -1,18 +1,17 @@
 import React, { Component } from 'react';
-import { setCoordinate } from '../../controllers/geocoding';
+import { setCoordinate, detectWidthChanged } from '../../controllers/geocoding';
 
 const geocoding = WrappedComponent => (
   class extends Component {
     static defaultProps = {
-      grid: 15,
       ratio: 1,
       width: 400,
     };
     componentWillMount() {
       setCoordinate.call(this);
     }
-    componentWillReceiveProps() {
-      setCoordinate.call(this);
+    componentWillReceiveProps(nextProps) {
+      detectWidthChanged.call(this, nextProps, this.props);
     }
     render() {
       const {

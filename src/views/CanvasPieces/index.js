@@ -4,8 +4,6 @@ import { detectChessMovesChange, detectWidthChange } from '../../controllers/Can
 import './style.less';
 
 class CanvasPieces extends Component {
-  static defaultProps = {
-  }
   static propTypes = {
     width: PropTypes.number.isRequired,
     height: PropTypes.number.isRequired,
@@ -20,6 +18,7 @@ class CanvasPieces extends Component {
     const { width, height } = this.props;
     return (
       <canvas
+        target
         ref={(self) => { this.canvas = self; }}
         width={width}
         height={height}

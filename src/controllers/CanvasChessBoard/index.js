@@ -1,3 +1,9 @@
+/**
+ * Draw line on context of canvas by start point and end point
+ * @param {*} ctx Context of canvas
+ * @param {array} s Start point
+ * @param {array} e End point
+ */
 const drawLine = (ctx, s, e) => {
   ctx.beginPath();
   ctx.moveTo(s[0], s[1]);
@@ -5,6 +11,11 @@ const drawLine = (ctx, s, e) => {
   ctx.closePath();
   ctx.stroke();
 };
+/**
+ * Draw chessboard on canvas
+ * @param {element} canvas The element of canvas
+ * @param {object} props The properties of the component.
+ */
 export const drawBoard = (canvas, props) => {
   const {
     grid,

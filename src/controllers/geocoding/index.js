@@ -1,11 +1,14 @@
+/**
+ * Calculate coordinates and set into state.
+ */
 export function setCoordinate() {
   const { width, ratio, grid } = this.props;
   if (typeof width !== 'number') {
     return false;
   }
   const coord = new Array(grid + 2);
-  const trueWidth = Math.floor(width / 15) * 15;
-  const trueHeight = Math.floor((trueWidth * ratio) / 15) * 15;
+  const trueWidth = Math.floor(width / grid) * grid;
+  const trueHeight = Math.floor((trueWidth * ratio) / grid) * grid;
   const unitWidth = trueWidth / (grid + 1);
   const unitHeight = trueHeight / (grid + 1);
   for (let x = 0; x <= grid + 1; x += 1) {
@@ -21,6 +24,18 @@ export function setCoordinate() {
     width: trueWidth,
     height: trueHeight,
   });
+}
+/**
+ * Detect if the width of container is changed
+ * @param {*} nextProps Next properties of the component
+ * @param {*} props Current properties of the component
+ */
+export function detectWidthChanged(nextProps, props) {
+  const { width: nextWidth } = nextProps;
+  const { width } = props;
+  if (nextWidth !== width) {
+    setCoordinate.call(this);
+  }
 }
 
 export default setCoordinate;
