@@ -1,0 +1,5 @@
+describe('CanvasChessBoard', () => {
+  describe('views', () => {
+
+  });
+});
