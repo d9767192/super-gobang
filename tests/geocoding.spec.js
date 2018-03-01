@@ -42,6 +42,11 @@ describe('geocoding', () => {
       expect(mockFn).toHaveBeenCalledTimes(1);
       expect(ownProps.detectWidthChanged).toHaveBeenCalledTimes(1);
     });
+    it('should render nothing if coord is undefined', () => {
+      const WrappedComponent = geocoding(CanvasGoBang);
+      const tree = toJson(shallow(<WrappedComponent {...props} />));
+      expect(tree).toMatchSnapshot();
+    });
   });
   describe('router', () => {
     it('should pass setCoordinate', () => {

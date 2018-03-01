@@ -51,7 +51,7 @@ const geocoding = WrappedComponent => (
             unitHeight={unitHeight}
           />
         ) :
-        undefined;
+        null;
     }
   }
 );

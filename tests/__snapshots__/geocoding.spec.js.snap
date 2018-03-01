@@ -38,3 +38,5 @@ exports[`geocoding view should be rendered properly 1`] = `
   width={160}
 />
 `;
+
+exports[`geocoding view should render nothing if coord is undefined 1`] = `""`;

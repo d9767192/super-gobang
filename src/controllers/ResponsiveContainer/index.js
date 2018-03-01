@@ -4,7 +4,7 @@ import React from 'react';
  * Set width and height into children
  * @param {element} container The element of the container
  */
-function setWidthAndHeight(container) {
+export function setWidthAndHeight(container) {
   return (
     function handler() {
       const { children } = this.props;
