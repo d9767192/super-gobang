@@ -6,7 +6,7 @@ import { radiusRatio, s, e } from './config';
  * @param {number} width The width of the chessboard
  * @param {number} height The height of the chessboard
  */
-const clearCanvas = (ctx, width, height) => {
+export const clearCanvas = (ctx, width, height) => {
   ctx.clearRect(0, 0, width, height);
 };
 /**
@@ -15,7 +15,7 @@ const clearCanvas = (ctx, width, height) => {
  * @param {array} coord The coordinate of piece
  * @param {number} unitWidth Unit width per grid
  */
-const clearPiece = (ctx, coord, unitWidth) => {
+export const clearPiece = (ctx, coord, unitWidth) => {
   const cx = coord[0];
   const cy = coord[1];
   ctx.clearRect(cx - (unitWidth / 2), cy - (unitWidth / 2), unitWidth, unitWidth);
@@ -27,7 +27,7 @@ const clearPiece = (ctx, coord, unitWidth) => {
  * @param {number} unitWidth Unit width per grid
  * @param {string} color The color of piece
  */
-const drawPiece = (ctx, coord, unitWidth, color) => {
+export const drawPiece = (ctx, coord, unitWidth, color) => {
   const r = radiusRatio * (unitWidth / 2);
   const cx = coord[0];
   const cy = coord[1];
@@ -43,7 +43,7 @@ const drawPiece = (ctx, coord, unitWidth, color) => {
  * @param {object} nextProps Next properties of the component
  * @param {object} props Current properties of the component
  */
-const addOrRemovePiece = (ctx, nextProps, props) => {
+export const addOrRemovePiece = (ctx, nextProps, props) => {
   const { chessMoves: nextChessMoves, unitWidth, coord } = nextProps;
   const { chessMoves } = props;
   if (chessMoves.length < nextChessMoves.length) {
@@ -64,14 +64,14 @@ const addOrRemovePiece = (ctx, nextProps, props) => {
  * @param {*} ctx Context of the canvas
  * @param {*} props The properties of the component
  */
-const redrawPieces = (ctx, props) => {
+export const redrawPieces = (ctx, props) => {
   const {
     width,
     height,
     unitWidth,
     coord,
+    chessMoves,
   } = props;
-  const { chessMoves } = props;
   clearCanvas(ctx, width, height);
   chessMoves.forEach((element) => {
     const { x, y, color } = element;
@@ -102,8 +102,8 @@ export const detectChessMovesChange = (container, nextProps, props) => {
 export const detectWidthChange = (container, prevProps, props) => {
   const ctx = container.getContext('2d');
   const { width } = props;
-  const { width: nextWidth } = prevProps;
-  if (nextWidth !== width) {
+  const { width: prevWidth } = prevProps;
+  if (prevWidth !== width) {
     redrawPieces(ctx, prevProps);
   }
 };

@@ -4,7 +4,7 @@
  * @param {array} s Start point
  * @param {array} e End point
  */
-const drawLine = (ctx, s, e) => {
+export const drawLine = (ctx, s, e) => {
   ctx.beginPath();
   ctx.moveTo(s[0], s[1]);
   ctx.lineTo(e[0], e[1]);
