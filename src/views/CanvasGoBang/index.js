@@ -1,6 +1,6 @@
 import React from 'react';
-import CanvasChessBoard from '../CanvasChessBoard';
-import CanvasPieces from '../CanvasPieces';
+import CanvasChessBoard from '../../router/CanvasChessBoard';
+import CanvasPieces from '../../router/CanvasPieces';
 import geocoding from '../../hocs/geocoding';
 import './style.less';
 

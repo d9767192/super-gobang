@@ -1,18 +1,21 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { drawBoard } from '../../controllers/CanvasChessBoard';
 import './style.less';
 
 class CanvasChessBoard extends Component {
+  static defaultProps = {
+    drawBoard: () => {},
+  }
   static propTypes = {
     width: PropTypes.number.isRequired,
     height: PropTypes.number.isRequired,
+    drawBoard: PropTypes.func,
   }
   componentDidMount() {
-    drawBoard(this.chessboard, this.props);
+    this.props.drawBoard(this.chessboard);
   }
   componentDidUpdate() {
-    drawBoard(this.chessboard, this.props);
+    this.props.drawBoard(this.chessboard);
   }
   render() {
     const { width, height } = this.props;

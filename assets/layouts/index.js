@@ -1,5 +1,5 @@
 import React from 'react';
-import GoBangHost from '../../src/views/GoBangHost';
+import GoBangHost from '../../src/router/GoBangHost';
 import './style.less';
 
 class App extends React.Component {
