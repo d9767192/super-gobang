@@ -152,6 +152,11 @@ describe('CanvasChessPieces', () => {
         const base64String = canvas.toDataURL();
         expect(base64String).toMatchSnapshot();
       });
+      it('should skip if next width is same with current width', () => {
+        controller.detectWidthChange(canvas, props, props);
+        const base64String = canvas.toDataURL();
+        expect(base64String).toMatchSnapshot();
+      });
     });
   });
 });

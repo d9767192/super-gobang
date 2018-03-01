@@ -1,17 +1,36 @@
 import React, { Component } from 'react';
-import { setCoordinate, detectWidthChanged } from '../../controllers/geocoding';
+import PropTypes from 'prop-types';
 
 const geocoding = WrappedComponent => (
   class extends Component {
     static defaultProps = {
-      ratio: 1,
       width: 400,
+      ratio: 1,
+      setCoordinate: () => {},
+      detectWidthChanged: () => {},
     };
+    static propTypes = {
+      grid: PropTypes.number.isRequired,
+      width: PropTypes.number,
+      ratio: PropTypes.number,
+      setCoordinate: PropTypes.func,
+      detectWidthChanged: PropTypes.func,
+    }
+    constructor(props) {
+      super(props);
+      this.state = {
+        coord: undefined,
+        width: undefined,
+        height: undefined,
+        unitWidth: undefined,
+        unitHeight: undefined,
+      };
+    }
     componentWillMount() {
-      setCoordinate.call(this);
+      this.props.setCoordinate.call(this);
     }
     componentWillReceiveProps(nextProps) {
-      detectWidthChanged.call(this, nextProps, this.props);
+      this.props.detectWidthChanged.call(this, nextProps, this.props);
     }
     render() {
       const {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ResponsiveContainer from '../../router/ResponsiveContainer';
-import CanvasGoBang from '../CanvasGoBang';
+import GoBang from '../CanvasGoBang';
 import './style.less';
 
 class GoBangHost extends Component {
@@ -58,7 +58,7 @@ class GoBangHost extends Component {
     return (
       <div className="gobang-host-style">
         <ResponsiveContainer>
-          <CanvasGoBang grid={grid} chessMoves={chessMoves} />
+          <GoBang grid={grid} chessMoves={chessMoves} />
         </ResponsiveContainer>
       </div>
     );
