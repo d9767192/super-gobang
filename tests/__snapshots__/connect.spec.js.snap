@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`connect view should be rendered properly without method if method is not a function 1`] = `<CanvasGoBang />`;
+
+exports[`connect view should be rendered with method as props if method is a function 1`] = `
+<CanvasGoBang
+  test={[Function]}
+/>
+`;

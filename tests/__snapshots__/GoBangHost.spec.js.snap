@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GoBangHost view should be rendered properly 1`] = `
+<div
+  className="gobang-host-style"
+>
+  <Component>
+    <Component
+      chessMoves={Array []}
+      grid={15}
+    />
+  </Component>
+</div>
+`;

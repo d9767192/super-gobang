@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`geocoding view should be rendered properly 1`] = `
+<CanvasGoBang
+  coord={Array []}
+  detectWidthChanged={
+    [MockFunction] {
+      "calls": Array [
+        Array [
+          Object {
+            "detectWidthChanged": [MockFunction] {
+              "calls": [Circular],
+            },
+            "grid": 15,
+            "ratio": 1,
+            "setCoordinate": [Function],
+            "width": 200,
+          },
+          Object {
+            "detectWidthChanged": [MockFunction] {
+              "calls": [Circular],
+            },
+            "grid": 15,
+            "ratio": 1,
+            "setCoordinate": [Function],
+            "width": 160,
+          },
+        ],
+      ],
+    }
+  }
+  grid={15}
+  height={100}
+  ratio={1}
+  setCoordinate={[Function]}
+  unitHeight={10}
+  unitWidth={10}
+  width={160}
+/>
+`;
+
+exports[`geocoding view should render nothing if coord is undefined 1`] = `""`;
