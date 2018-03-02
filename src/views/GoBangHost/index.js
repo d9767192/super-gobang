@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ResponsiveContainer from '../../router/ResponsiveContainer';
-import GoBang from '../DivGoBang';
+import DGoBang from '../DivGoBang';
+import CGoBang from '../CanvasGoBang';
 import './style.less';
 
 class GoBangHost extends Component {
@@ -18,6 +19,7 @@ class GoBangHost extends Component {
     removeClickEventListener: () => {},
     receivePropsHandler: () => {},
     shouldUpdate: () => {},
+    isCanvasSupported: () => true,
   }
   static propTypes = {
     grid: PropTypes.number,
@@ -29,16 +31,20 @@ class GoBangHost extends Component {
     removeClickEventListener: PropTypes.func,
     receivePropsHandler: PropTypes.func,
     shouldUpdate: PropTypes.func,
+    isCanvasSupported: PropTypes.func,
     singleRace: PropTypes.bool,
     fallback: PropTypes.bool,
     restart: PropTypes.bool,
   }
   constructor(props) {
     super(props);
-    this.state = { chessMoves: [] };
+    this.state = { chessMoves: [], WrappedComponent: undefined };
   }
   componentWillMount() {
     this.props.addClickEventListener.call(this, this.props);
+    const supportCanvas = this.props.isCanvasSupported();
+    const WrappedComponent = supportCanvas ? CGoBang : DGoBang;
+    this.setState({ WrappedComponent });
   }
   componentWillReceiveProps(nextProps) {
     this.props.receivePropsHandler.call(this, nextProps);
@@ -53,12 +59,12 @@ class GoBangHost extends Component {
     this.props.removeClickEventListener.call(this);
   }
   render() {
-    const { chessMoves } = this.state;
+    const { chessMoves, WrappedComponent } = this.state;
     const { grid } = this.props;
     return (
       <div className="gobang-host-style">
         <ResponsiveContainer>
-          <GoBang grid={grid} chessMoves={chessMoves} />
+          <WrappedComponent grid={grid} chessMoves={chessMoves} />
         </ResponsiveContainer>
       </div>
     );

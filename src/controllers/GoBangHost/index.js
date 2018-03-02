@@ -228,5 +228,9 @@ export const shouldUpdate = (nextState, state) => {
   const { chessMoves } = state;
   return nextChessMoves !== chessMoves;
 };
+export const isCanvasSupported = () => {
+  const canvas = document.createElement('canvas');
+  return canvas.getContext !== undefined;
+};
 
 export default addClickEventListener;

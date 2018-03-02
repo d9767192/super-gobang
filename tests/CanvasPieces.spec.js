@@ -14,6 +14,8 @@ const coord = Array.from({ length: 17 }, (v, i) => {
 const props = {
   width: 160,
   height: 160,
+  unitWidth: 10,
+  coord,
 };
 
 describe('CanvasChessPieces', () => {
