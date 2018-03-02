@@ -1,5 +1,5 @@
 import React from 'react';
-import GoBangHost from '../../src/router/GoBangHost';
+import DivChessBoard from '../../src/views/DivChessBoard';
 import './style.less';
 
 class App extends React.Component {
@@ -25,11 +25,9 @@ class App extends React.Component {
       <div>
         <button onClick={this.onFallBack}>Fallback</button>
         <button onClick={this.onRestart}>Restart</button>
-        <GoBangHost
-          fallback={fallback}
-          restart={restart}
-          updated={this.updated}
-          gameOver={(winner) => { console.log(`${winner} Wins!`); }}
+        <DivChessBoard
+          width={400}
+          height={400}
         />
       </div>
     );
