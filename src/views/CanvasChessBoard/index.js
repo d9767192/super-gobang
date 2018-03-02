@@ -4,9 +4,12 @@ import './style.less';
 
 class CanvasChessBoard extends Component {
   static defaultProps = {
+    grid: 15,
     drawBoard: () => {},
   }
   static propTypes = {
+    grid: PropTypes.number,
+    coord: PropTypes.array.isRequired,
     width: PropTypes.number.isRequired,
     height: PropTypes.number.isRequired,
     drawBoard: PropTypes.func,
