@@ -83,7 +83,7 @@ export const redrawPieces = (ctx, props) => {
  * Detect if the chess moves
  * @param {element} container The element of the canvas
  * @param {object} nextProps Next properties of the component
- * @param {*} props Current properties of the component
+ * @param {object} props Current properties of the component
  */
 export const detectChessMovesChange = (container, nextProps, props) => {
   const ctx = container.getContext('2d');
@@ -95,9 +95,9 @@ export const detectChessMovesChange = (container, nextProps, props) => {
 };
 /**
  * Detect if the width of container is changed
- * @param {*} container The element of the canvas
- * @param {*} prevProps The previous properties of the component
- * @param {*} props Current properties of the component.
+ * @param {element} container The element of the canvas
+ * @param {object} prevProps The previous properties of the component
+ * @param {object} props Current properties of the component.
  */
 export const detectWidthChange = (container, prevProps, props) => {
   const ctx = container.getContext('2d');

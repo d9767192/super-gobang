@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './style.less';
 
-class CanvasPieces extends Component {
+class DivPieces extends Component {
   static defaultProps = {
+    chessMoves: [],
     detectChessMovesChange: () => {},
     detectWidthChange: () => {},
-    chessMoves: [],
   }
   static propTypes = {
     width: PropTypes.number.isRequired,
@@ -17,24 +17,32 @@ class CanvasPieces extends Component {
     detectChessMovesChange: PropTypes.func,
     detectWidthChange: PropTypes.func,
   }
+  constructor(props) {
+    super(props);
+    this.state = { children: [] };
+  }
   componentWillReceiveProps(nextProps) {
-    this.props.detectChessMovesChange(this.canvas, nextProps);
+    this.props.detectChessMovesChange.call(this, nextProps, this.props);
   }
   componentDidUpdate(prevProps) {
-    this.props.detectWidthChange(this.canvas, prevProps);
+    this.props.detectWidthChange.call(this, prevProps, this.props);
   }
   render() {
+    const { children } = this.state;
     const { width, height } = this.props;
     return (
-      <canvas
-        target
-        ref={(self) => { this.canvas = self; }}
-        width={width}
-        height={height}
-        className="canvas-pieces-style"
-      />
+      <div className="div-piece-style" style={{ width, height }}>
+        <div
+          width={width}
+          height={height}
+          target
+          className="inner-wrapper"
+        >
+          {children}
+        </div>
+      </div>
     );
   }
 }
 
-export default CanvasPieces;
+export default DivPieces;

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ResponsiveContainer from '../../router/ResponsiveContainer';
-import GoBang from '../CanvasGoBang';
+import GoBang from '../DivGoBang';
 import './style.less';
 
 class GoBangHost extends Component {

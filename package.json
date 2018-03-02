@@ -10,7 +10,7 @@
     "url": "https://github.com/d9767192/super-gobang.git"
   },
   "browserslist": [
-    "Last 2 versions"
+    "Last 4 versions"
   ],
   "scripts": {
     "quick": "plop --plopfile build/scaffold/start.js",

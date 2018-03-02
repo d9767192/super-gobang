@@ -8,34 +8,25 @@ const DivChessBoard = (props) => {
     height,
     grid,
     style,
+    unitHeight,
   } = props;
-  const unitWidth = 100 / (grid + 1);
-  const unitHeight = 100 / (grid + 1);
   return (
-    <table
+    <div
       className="div-chessboard-style"
       style={{ width, height, ...style }}
-      width={width}
-      height={height}
     >
       {
-        Array.from({ length: grid }, () => (
-          <tr
-            className="chessboard-row"
-            style={{ height: `${unitHeight}%` }}
-          >
+        Array.from({ length: (grid + 1) }, (v, i) => (
+          <div key={`${i}-board`} className="chessboard-row" style={{ height: unitHeight }}>
             {
-              Array.from({ length: grid }, () => (
-                <td
-                  className="chessboard-col"
-                  style={{ width: `${unitWidth}%` }}
-                />
+              Array.from({ length: (grid + 1) }, (d, j) => (
+                <div key={`${i}-${j}-board`} className="chessboard-col" />
               ))
             }
-          </tr>
+          </div>
         ))
       }
-    </table>
+    </div>
   );
 };
 DivChessBoard.defaultProps = {
@@ -46,6 +37,7 @@ DivChessBoard.propTypes = {
   grid: PropTypes.number,
   width: PropTypes.number.isRequired,
   height: PropTypes.number.isRequired,
+  unitHeight: PropTypes.number.isRequired,
   style: PropTypes.object,
 };
 

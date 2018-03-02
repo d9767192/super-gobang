@@ -1,13 +1,11 @@
 .div-chessboard-style {
-  border-top: solid 1px #000000;
-  border-left: solid 1px #000000;
   .chessboard-row {
-    width: 100%;
+    display: flex;
+    flex: 1;
     .chessboard-col {
-      height: 100%;
-      border-right: solid 1px #000000;
-      border-bottom: solid 1px #000000;
-      float: left;
+      flex: 1;
+      border: solid 1px #000000;
+      border-collapse: collapse;
     }
   }
 }
