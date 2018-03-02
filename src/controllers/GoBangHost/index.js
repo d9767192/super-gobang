@@ -7,7 +7,7 @@ import { chainNum, black, white, deadlock } from './config';
  * @param {number} grid The grid number of gobang
  * @returns {boolean} Checked result
  */
-const isInBoundOfBoard = (x, y, grid) => x > 0 && x <= grid && y > 0 && y <= grid;
+export const isInBoundOfBoard = (x, y, grid) => x > 0 && x <= grid && y > 0 && y <= grid;
 /**
  * Update chess moves
  * @param {array} chessMoves Array of the recordings of chess moves
@@ -16,7 +16,7 @@ const isInBoundOfBoard = (x, y, grid) => x > 0 && x <= grid && y > 0 && y <= gri
  * @param {object} props The properties of the component
  * @returns {object} Updated chess moves array, current player name and its color
  */
-const updateChessMoves = (chessMoves, x, y, props) => {
+export const updateChessMoves = (chessMoves, x, y, props) => {
   const { wColor, bColor } = props;
   const nextChessMoves = chessMoves.slice();
   const color = (nextChessMoves.length + 1) % 2 === 0 ? wColor : bColor;
@@ -32,7 +32,7 @@ const updateChessMoves = (chessMoves, x, y, props) => {
  * @param {number} grid The grid number of gobang
  * @returns {object} The chessboard XY coordinates
  */
-const calculateXY = (target, posX, posY, grid) => {
+export const calculateXY = (target, posX, posY, grid) => {
   const width = target.getAttribute('width');
   const height = target.getAttribute('height');
   const x = Math.floor(Math.round((posX / width) * (grid + 1)));
@@ -47,7 +47,7 @@ const calculateXY = (target, posX, posY, grid) => {
  * @param {function} otherConditions Other conditions which want to be added in judgement
  * @returns {boolean} The checking result
  */
-const pointExisted = (x, y, chessMoves, otherConditions = () => true) => {
+export const pointExisted = (x, y, chessMoves, otherConditions = () => true) => {
   const point = chessMoves.find(item => item.x === x && item.y === y && otherConditions(item));
   return point !== undefined;
 };
@@ -58,7 +58,7 @@ const pointExisted = (x, y, chessMoves, otherConditions = () => true) => {
  * @param {number} grid The grid number of gobang
  * @returns {array} All conditions the player could win
  */
-const getWinConditions = (x, y, grid) => {
+export const getWinConditions = (x, y, grid) => {
   const yLowerBound = (y - chainNum) + 1;
   const yUpperBound = (y + chainNum) - 1;
   const xLowerBound = (x - chainNum) + 1;
@@ -100,7 +100,7 @@ const getWinConditions = (x, y, grid) => {
  * @param {array} chessMoves Array of the recordings of chess moves
  * @returns {boolean} The result if the player wins
  */
-function checkWin(x, y, color, grid, chessMoves) {
+export function checkWin(x, y, color, grid, chessMoves) {
   if (chessMoves.length < 9) {
     return false;
   }
@@ -113,28 +113,54 @@ function checkWin(x, y, color, grid, chessMoves) {
   return result;
 }
 /**
+ * Whether game is over
+ * @param {array} chessMoves Array of the recordings of chess moves
+ * @param {number} x The x coordinate of piece
+ * @param {number} y The y coordinate of piece
+ * @param {string} color The color of current piece
+ * @param {string} player The current player
+ * @param {object} props The properties of the component
+ * @returns {boolean} If true, the game is over.
+ */
+export const isGameOver = (chessMoves, x, y, color, player, props) => {
+  const { gameOver, grid } = props;
+  const result = checkWin(x, y, color, grid, chessMoves);
+  if (result) {
+    gameOver(player);
+  } else if (chessMoves.length === grid * grid) {
+    gameOver(deadlock);
+  }
+  return result;
+};
+/**
+ * Update chess moves if point is valid
+ * @param {*} x The x coordinate of piece
+ * @param {*} y The y coordinate of piece
+ * @param {*} chessMoves Array of the recordings of chess moves
+ * @param {*} props The properties of the component
+ */
+export function updateIfPointIsValid(x, y, chessMoves, props) {
+  const { grid } = props;
+  if (isInBoundOfBoard(x, y, grid) && !pointExisted(x, y, chessMoves)) {
+    const { nextChessMoves, player, color } = updateChessMoves(chessMoves, x, y, props);
+    const nextLocked = isGameOver(nextChessMoves, x, y, color, player, props);
+    this.setState({ chessMoves: nextChessMoves, locked: nextLocked });
+  }
+}
+/**
  * Add piece on to the chessboard and check if the player wins or deadlocks
  * @param {*} props The properties of the component
  */
-function addPiece(props) {
+export function addPiece(props) {
   return (
     function listener(e) {
-      const { grid, gameOver } = props;
+      const { grid } = props;
       const { target, offsetX, offsetY } = e;
       const isTarget = target.getAttribute('target');
       const { chessMoves, locked } = this.state;
       if (isTarget && !locked) {
         const { x, y } = calculateXY(target, offsetX, offsetY, grid);
-        if (isInBoundOfBoard(x, y, grid) && !pointExisted(x, y, chessMoves)) {
-          const { nextChessMoves, player, color } = updateChessMoves(chessMoves, x, y, props);
-          const result = checkWin(x, y, color, grid, nextChessMoves);
-          if (result) {
-            gameOver(player);
-          } else if (nextChessMoves.length === grid * grid) {
-            gameOver(deadlock);
-          }
-          this.setState({ chessMoves: nextChessMoves, locked: result });
-        }
+        updateIfPointIsValid.call(this, x, y, chessMoves, props);
       }
     }
   );
@@ -143,7 +169,7 @@ function addPiece(props) {
  * Fallback the piece
  * @param {*} props The properties of the component
  */
-function fallbackPieces(props) {
+export function fallbackPieces(props) {
   const { singleRace } = props;
   const { chessMoves, locked } = this.state;
   const { length } = chessMoves;
@@ -160,7 +186,7 @@ function fallbackPieces(props) {
 /**
  * Restart the game
  */
-function restartGame() {
+export function restartGame() {
   this.setState({ chessMoves: [], locked: false });
 }
 /**
