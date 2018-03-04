@@ -12,4 +12,4 @@
 </div>
 
 ## Demo Page
-- [Click me to see demo page](https://d9767192.github.io/super-gobang/dist/).
+- [Click me to see demo page](https://d9767192.github.io/super-gobang/demo/).
