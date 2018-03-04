@@ -1,6 +1,6 @@
 {
   "name": "super-gobang",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Gobang game. It's fun!",
   "main": "./src/index.js",
   "author": "Chuck Wu",
