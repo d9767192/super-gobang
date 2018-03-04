@@ -22,7 +22,6 @@ jobs:
     <<: *defaults
     steps:
       - *restore_repo
-      - checkout
       - attach_workspace:
           at: ~/superGobang
       - run: yarn test
