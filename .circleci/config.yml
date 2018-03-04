@@ -1,5 +1,5 @@
 defaults: &defaults
-  working_directory: /tmp/superGobang
+  working_directory: /tmp/super-gobang
   docker:
     - image: circleci/node:7.10
 restore_repo: &restore_repo
@@ -16,14 +16,12 @@ jobs:
       - run: yarn install
       - save_cache:
           paths:
-            - node_modules
+            - /tmp/super-gobang
           key: v1-dependencies-{{ .Branch }}-{{ .Revision }}
   test:
     <<: *defaults
     steps:
       - *restore_repo
-      - attach_workspace:
-          at: ~/superGobang
       - run: yarn test
 
 all_tags: &all_tags
