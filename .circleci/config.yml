@@ -13,7 +13,9 @@ jobs:
     steps:
       - *restore_repo
       - checkout
-      - run: yarn install
+      - run:
+          name: Install dependencies
+          command: yarn install
       - save_cache:
           paths:
             - /tmp/super-gobang
@@ -22,7 +24,12 @@ jobs:
     <<: *defaults
     steps:
       - *restore_repo
-      - run: yarn test
+      - run:
+          name: Unit Test
+          command: yarn test
+      - run:
+          name: Coverage
+          command: bash <(curl -s https://codecov.io/bash)
 
 all_tags: &all_tags
   filters:
