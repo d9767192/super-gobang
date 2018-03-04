@@ -21,5 +21,5 @@
 - High expansibility
 
 ## Quality Monitoring
-- Circle CI: [Click Me](https://circleci.com/gh/d9767192)
+- Circle CI: [Click Me](https://circleci.com/gh/d9767192/super-gobang)
 - Code Coverage: [Click Me](https://codecov.io/gh/d9767192/super-gobang)
