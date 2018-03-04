@@ -51,18 +51,20 @@ describe('CanvasChessBoard', () => {
     describe('drawLine', () => {
       it('should draw line properly by start point and end point', () => {
         const ctx = canvas.getContext('2d');
+        const oriBase64String = canvas.toDataURL();
         const s = [100, 0];
         const e = [100, 100];
         controller.drawLine(ctx, s, e);
         const base64String = canvas.toDataURL();
-        expect(base64String).toMatchSnapshot();
+        expect(base64String).not.toBe(oriBase64String);
       });
     });
     describe('drawBoard', () => {
       it('should draw board properly', () => {
+        const oriBase64String = canvas.toDataURL();
         controller.drawBoard(canvas, props);
         const base64String = canvas.toDataURL();
-        expect(base64String).toMatchSnapshot();
+        expect(base64String).not.toBe(oriBase64String);
       });
     });
   });
