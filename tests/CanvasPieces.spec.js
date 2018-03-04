@@ -78,8 +78,8 @@ describe('CanvasChessPieces', () => {
         const coordinate = [50, 50];
         const color = '#000000';
         controller.drawPiece(ctx, coordinate, unitWidth, color);
-        const base64String = canvas.toDataURL();
-        expect(base64String).toMatchSnapshot();
+        const data = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        expect(data).toMatchSnapshot();
       });
     });
     describe('addOrRemovePiece', () => {

@@ -22,9 +22,6 @@ jobs:
     <<: *defaults
     steps:
       - *restore_repo
-    environment:
-      LC_ALL: en_US.UTF-8
-      LANG: en_US.UTF-8
       - run: yarn test
 
 all_tags: &all_tags
