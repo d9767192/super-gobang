@@ -13,3 +13,13 @@
 
 ## Demo Page
 - [Click me to see demo page](https://d9767192.github.io/super-gobang/demo/).
+
+## Feature
+- Responsive web design (Mobile is enable)
+- Auto-detection of canvas compatibility (If not, the div version would be used)
+- Modularize design (Three abstractions role: chess board, chess pieces and host)
+- High expansibility
+
+## Quality Monitoring
+- Circle CI: [Click Me](https://circleci.com/gh/d9767192)
+- Code Coverage: [Click Me](https://codecov.io/gh/d9767192/super-gobang)
