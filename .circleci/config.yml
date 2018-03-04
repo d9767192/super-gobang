@@ -15,7 +15,7 @@ jobs:
       - checkout
       - run:
           name: Install dependencies
-          command: yarn install
+          command: npm install
       - save_cache:
           paths:
             - /tmp/super-gobang
@@ -25,10 +25,13 @@ jobs:
     steps:
       - *restore_repo
       - run:
-          name: Unit Test
-          command: yarn test
+          name: Unit Testing
+          command: npm test
       - run:
-          name: Coverage
+          name: Coverage Testing
+          command: npm run test:coverage
+      - run:
+          name: Post Coverage Report
           command: bash <(curl -s https://codecov.io/bash)
 
 all_tags: &all_tags
