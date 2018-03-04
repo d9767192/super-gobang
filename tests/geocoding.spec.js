@@ -84,7 +84,7 @@ describe('geocoding', () => {
     });
     describe('detectWidthChanged', () => {
       it('should call setCoordinate if next width is different with current width', () => {
-        const nextProps = { width: 100 };
+        const nextProps = { ...props, width: 100 };
         controller.detectWidthChanged.call(self, nextProps, props);
         expect(self.state).toBeDefined();
       });

@@ -1,5 +1,5 @@
 import React from 'react';
-import GoBangHost from '../../src/router/GoBangHost';
+import GoBangHost from '../../src';
 import './style.less';
 
 class App extends React.Component {
@@ -22,15 +22,24 @@ class App extends React.Component {
   render() {
     const { fallback, restart } = this.state;
     return (
-      <div>
-        <button onClick={this.onFallBack}>Fallback</button>
-        <button onClick={this.onRestart}>Restart</button>
-        <GoBangHost
-          fallback={fallback}
-          restart={restart}
-          updated={this.updated}
-          gameOver={(winner) => { console.log(`${winner} Wins!`); }}
-        />
+      <div className="gobang-style">
+        <div className="gobang-title">
+          Gobang Game
+        </div>
+        <div className="gobang-area">
+          <div className="inner-wrapper">
+            <GoBangHost
+              fallback={fallback}
+              restart={restart}
+              updated={this.updated}
+              gameOver={(winner) => { alert(`${winner} Wins!`); }}
+            />
+          </div>
+        </div>
+        <div className="button-area">
+          <button onClick={this.onFallBack}>Fallback</button>
+          <button onClick={this.onRestart}>Restart</button>
+        </div>
       </div>
     );
   }

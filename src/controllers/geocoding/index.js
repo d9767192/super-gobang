@@ -1,8 +1,8 @@
 /**
  * Calculate coordinates and set into state.
  */
-export function setCoordinate() {
-  const { width, ratio, grid } = this.props;
+export function setCoordinate(nextProps) {
+  const { width, ratio, grid } = nextProps !== undefined ? nextProps : this.props;
   if (typeof width !== 'number') {
     return false;
   }
@@ -34,7 +34,7 @@ export function detectWidthChanged(nextProps, props) {
   const { width: nextWidth } = nextProps;
   const { width } = props;
   if (nextWidth !== width) {
-    setCoordinate.call(this);
+    setCoordinate.call(this, nextProps);
   }
 }
 
