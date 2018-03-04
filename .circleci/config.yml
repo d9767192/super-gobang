@@ -1,27 +1,32 @@
 defaults: &defaults
   docker:
     - image: circleci/node:7.10
-  working_directory: ~/superGobang
+  working_directory: /workspace/superGobang
+restore_repo: &restore_repo
+  restore_cache:
+    keys:
+      - v1-dependencies-{{ .Branch }}-{{ .Revision }}
 version: 2
 jobs:
   build:
     <<: *defaults
     steps:
+      - *restore_repo
       - checkout
       - attach_workspace:
           at: ~/circleci-demo-workflows
       - restore_cache:
-          keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-          - v1-dependencies-
+          key:
+          - v1-dependencies-{{ .Branch }}-{{ .Revision }}
       - run: yarn install
       - save_cache:
           paths:
             - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
+          key: v1-dependencies-{{ .Branch }}-{{ .Revision }}
   test:
     <<: *defaults
     steps:
+      - *restore_repo
       - checkout
       - attach_workspace:
           at: ~/superGobang
