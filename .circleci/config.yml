@@ -1,7 +1,7 @@
 defaults: &defaults
+  working_directory: /workspace/superGobang
   docker:
     - image: circleci/node:7.10
-  working_directory: /workspace/superGobang
 restore_repo: &restore_repo
   restore_cache:
     keys:
@@ -13,11 +13,6 @@ jobs:
     steps:
       - *restore_repo
       - checkout
-      - attach_workspace:
-          at: ~/circleci-demo-workflows
-      - restore_cache:
-          key:
-          - v1-dependencies-{{ .Branch }}-{{ .Revision }}
       - run: yarn install
       - save_cache:
           paths:
