@@ -2,9 +2,8 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:6.7
-    working_directory: ~/repo
-
+      - image: circleci/node:7.10
+    working_directory: ~/superGobang
     steps:
       - checkout
       - restore_cache:
@@ -18,7 +17,8 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
   test:
     docker:
-      - image: circleci/node:6.7
+      - image: circleci/node:7.10
+    working_directory: ~/superGobang
     steps:
       - checkout
       - run: yarn test
