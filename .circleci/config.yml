@@ -1,11 +1,11 @@
 defaults: &defaults
   docker:
     - image: circleci/node:7.10
+  working_directory: ~/superGobang
 version: 2
 jobs:
   build:
     <<: *defaults
-    working_directory: ~/superGobang
     steps:
       - checkout
       - restore_cache:
@@ -19,13 +19,15 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
   test:
     <<: *defaults
+    - attach_workspace:
+      at: ~/superGobang
     steps:
       - checkout
       - run: yarn test
 
 all_tags: &all_tags
   filters:
-    tags:
+    branches:
       only: master
 workflows:
   version: 2
