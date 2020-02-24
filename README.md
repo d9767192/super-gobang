@@ -5,8 +5,8 @@
 
 <div align="center">
   
-[![CircleCI](https://circleci.com/gh/d9767192/super-gobang/tree/master.svg?style=svg)](https://circleci.com/gh/d9767192/super-gobang/tree/master)
-[![codecov](https://codecov.io/gh/d9767192/super-gobang/branch/master/graph/badge.svg)](https://codecov.io/gh/d9767192/super-gobang)
+[![CircleCI](https://circleci.com/gh/chuckWu1989/super-gobang/tree/master.svg?style=svg)](https://circleci.com/gh/chuckWu1989/super-gobang/tree/master)
+[![codecov](https://codecov.io/gh/chuckWu1989/super-gobang/branch/master/graph/badge.svg)](https://codecov.io/gh/chuckWu1989/super-gobang)
 
 </div>
 
@@ -20,5 +20,5 @@
 - High expansibility
 
 ## Quality Monitoring
-- Circle CI: [Click Me](https://circleci.com/gh/d9767192/super-gobang)
-- Code Coverage: [Click Me](https://codecov.io/gh/d9767192/super-gobang)
+- Circle CI: [Click Me](https://circleci.com/gh/chuckWu1989/super-gobang)
+- Code Coverage: [Click Me](https://codecov.io/gh/chuckWu1989/super-gobang)
