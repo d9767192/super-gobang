@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://github.com/d9767192/super-gobang" rel="noopener" target="_blank"><img width="700" src="https://d9767192.github.io/super-gobang/public/gobang.png" alt="super-gobang logo"></a></p>
+  <a href="https://github.com/chuckWu1989/super-gobang" rel="noopener" target="_blank"><img width="700" src="https://chuckWu1989.github.io/super-gobang/public/gobang.png" alt="super-gobang logo"></a></p>
 
 <h1 align="center">Super-Gobang</h1>
 
@@ -11,7 +11,7 @@
 </div>
 
 ## Demo Page
-- [Click me to see demo page](https://d9767192.github.io/super-gobang/demo/).
+- [Click me to see demo page](https://chuckWu1989.github.io/super-gobang/demo/).
 
 ## Feature
 - Responsive web design (Mobile is enable)
