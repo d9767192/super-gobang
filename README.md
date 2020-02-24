@@ -8,7 +8,6 @@
 [![CircleCI](https://circleci.com/gh/d9767192/super-gobang/tree/master.svg?style=svg)](https://circleci.com/gh/d9767192/super-gobang/tree/master)
 [![codecov](https://codecov.io/gh/d9767192/super-gobang/branch/master/graph/badge.svg)](https://codecov.io/gh/d9767192/super-gobang)
 
-
 </div>
 
 ## Demo Page
