@@ -78,7 +78,7 @@
     "less": "^2.7.2",
     "less-loader": "^4.0.4",
     "lodash.isempty": "^4.4.0",
-    "node-sass": "^4.7.2",
+    "node-sass": "^4.13.1",
     "np": "^2.18.3",
     "optimist": "^0.6.1",
     "plop": "^1.9.1",
